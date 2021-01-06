@@ -309,7 +309,7 @@ def main(args):
                       criterion_fingerprint,
                       epoch,
                       gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
+                      classification_weight_rt=classification_weight_rt,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             train(args,
                       model, 
@@ -320,7 +320,7 @@ def main(args):
                       criterion_fingerprint,
                       epoch,
                       gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
+                      classification_weight_rt=classification_weight_rt,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             
         else:
@@ -373,8 +373,7 @@ def main(args):
                            fingerprint_weight_rt=fingerprint_weight_rt)
             (valid_loss,
              valid_loss_gae_original,
-             
-             _loss_classification_original,
+             valid_loss_classification_original,
              valid_loss_fingerprint_original,
              valid_loss_gae_weighted,
              valid_loss_classification_weighted,
@@ -399,7 +398,6 @@ def main(args):
          test_ap_score,
          test_roc_score_micro,
          test_ap_score_micro) = ret 
-        print("#############################################################TEST LOSS GAE WEIGHTED##################",test_loss_gae_weighted)
         vbar.set_description(
             'valid set - average loss: {:.4f}, accuracy: {:.0f}%'
             .format(test_loss, 100. * test_acc))

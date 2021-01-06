@@ -148,7 +148,7 @@ class Parser():
                                  help='adjacency_matrix, fingerprint, adjacency_matrix_fingerprint')
         self.parser.add_argument('--gae_weight', 
                                  type=float, 
-                                 default=0.5, 
+                                 default=0.25, 
                                  help='initial loss weight for the GAE part(default: 0.5). The used weight may be different to this one if the dynamic weight policy is applied')
         
         self.parser.add_argument('--classification_weight', 
@@ -158,7 +158,7 @@ class Parser():
         
         self.parser.add_argument('--fingerprint_weight', 
                                  type=float, 
-                                 default=0.5, 
+                                 default=0.25, 
                                  help='initial fingerprint weight for the fingerprint prediction part(default: 0.5). The used weight may be different to this one if the dynamic weight policy is applied')
 
         # done

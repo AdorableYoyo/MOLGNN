@@ -22,7 +22,7 @@
 computer=dgx
 #data_splitting_method='random_split'
 data_splitting_method='scaffold_split'
-experiment_repeat_id=1230_1
+experiment_repeat_id=0105
 stage=validation
 split_ratio=0.8
 #dataset=JAK1
@@ -32,8 +32,8 @@ split_ratio=0.8
 #if [ $computer == dgx ]
 #then
 datapath=/Users/wuyou/MOLGNN_MTL/Jak_/
-deepchem_datapath=/Users/wuyou/MOLGNN_MTL/DeepChem/
-tflog=/Users/wuyou/MOLGNN_MTL/tflogs_1230
+deepchem_datapath=/raid/home/yoyowu/DeepChem/
+tflog=/raid/home/yoyowu/MOLGNN/Molgnn/tflogs_1230
 device=1
 #fi
 #gae_train_method=unfreeze
@@ -42,13 +42,13 @@ device=1
 gae_train_method=static_fusing
 pretrain_epochs=1
 freeze_epochs=1
-finetune_epochs=2
+finetune_epochs=100
 #finetune_epochs=200
 #BACE BBBP ClinTox HIV
 #BACE BBBP ClinTox HIV
 #MUV Sider
 
-for dataset in BACE
+for dataset in BBBP BACE 
 #for dataset in BACE BBBP ClinToxBalanced HIVBalanced
 #for dataset in BACE BBBP
 #for dataset in ICLR2020_HIV
@@ -59,7 +59,7 @@ for dataset in BACE
 #for dataset in ClinToxBalanced HIVBalanced
 do
 #for unsupervised_training_branches in adjacency_matrix_fingerprint adjacency_matrix fingerprint
-for unsupervised_training_branches in fingerprint
+for unsupervised_training_branches in adjacency_matrix_fingerprint
 do
 nohup time 
 python MoLGNN.py  \
@@ -79,7 +79,7 @@ python MoLGNN.py  \
 --datapath ${datapath}  \
 --deepchem_datapath ${deepchem_datapath} \
 --tflog  ${tflog}  \
---device ${device}  > ./logs_1230/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
+--device ${device}  > /raid/home/yoyowu/MOLGNN/Molgnn/logs_1230/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
 echo "done ${dataset} ${split_ratio}"
 done
 done

@@ -66,10 +66,9 @@ def eval_net(args,
         loss_gae_weighted = gae_weight_rt*loss_gae
         loss_classification_weighted = classification_weight_rt*loss_classification
         loss_fingerprint_weighted = fingerprint_weight_rt*loss_fingerprint
-        print('FIRST -- LOSS_GAE_W, AND GAE_WEIGHT_RT', loss_gae_weighted,gae_weight_rt)
+      
         
         running_loss_gae_weighted += loss_gae_weighted.item() 
-        print('AFTER ITEM() RUNNING_LOSSGAEWIGHTED',running_loss_gae_weighted)
         running_loss_classification_weighted += loss_classification_weighted.item()
         running_loss_fingerprint_weighted += loss_fingerprint_weighted.item()
     
@@ -124,7 +123,7 @@ def eval_net(args,
     running_loss_gae_original /= total
     running_loss_classification_original /= total
     running_loss_gae_weighted /= total
-    print('TEST RUNNING LOSS GAE WEIGHTED LAST',running_loss_gae_weighted)
+#    print('TEST RUNNING LOSS GAE WEIGHTED LAST',running_loss_gae_weighted)
     running_loss_classification_weighted /= total
     running_loss_fingerprint_weighted /= total
 
