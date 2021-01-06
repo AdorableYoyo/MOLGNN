@@ -27,7 +27,7 @@ install_torch_geo.sh
 ## Install DGL
 
 ```
-conda install -c dglteam dgl=0.4.3post2
+conda install -c dglteam dgl-cuda10.0=0.4.3post2
 ```
 
 ## Install tensorflow
