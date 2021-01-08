@@ -30,31 +30,33 @@ variable names of the weight related to those 3 branches are:
  created train.py eval.py , freeze.py 
  deleted gae_train_method: unfreeze , freeze_n_epoch
 
+ Updated by Yoyo Jan 2021.
+ added dynamic fusing, gradual unfreeze dynamic method
+
 """
 
 import sys, os
 import numpy as np
 import scipy.sparse as sp
 from tqdm import tqdm
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from torch.utils.tensorboard import SummaryWriter
+from torch.nn.functional import binary_cross_entropy_with_logits as BCELoss
+from datetime import datetime
 
 from jakdt import GINDataset, DeepChemDataset, _MultipleLabelDatasets
 from deepchem_dataloader import DeepChemDatasetPG
 from jak_dataloader import GraphDataLoader, GraphDataLoaderSplit, collate
 from parser_MoLGNN import Parser
 from vgin import GIN, GIN_VGAE
-from torch.utils.tensorboard import SummaryWriter
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import average_precision_score
-from optimizer import loss_function as variational_loss_function
-from torch.nn.functional import binary_cross_entropy_with_logits as BCELoss
-from datetime import datetime
+
+
 from train import train
 from eval import eval_net 
 from freeze import freeze_model_weights,unfreeze_model_weights
+from gaussian_cdf import dynamic_fusion,gaussian_cdf
 # most deepChem datasets have the pytorch geometric format graph data
 _DeepChemDatasets = {'BACE',
                      'BACEFP',
@@ -77,7 +79,6 @@ for dataset in list(_DeepChemDatasets):
 def main(args):
     pretrain_epochs = args.pretrain_epochs
     finetune_epochs = args.finetune_epochs
-    freeze_epochs = args.freeze_epochs
     current_time = datetime.now().strftime('%b%d_%H-%M-%S')
     if args.train_gae:
         if args.gae_train_method == 'static_fusing':
@@ -94,10 +95,7 @@ def main(args):
                                   "hidden"+str(args.hidden_dim),
                                   args.gae_train_method,
                                   str(pretrain_epochs),
-                                  str(freeze_epochs),
-                                  str(finetune_epochs),
-                                  str(args.gae_weight),
-                                  str(args.classification_weight)])
+                                  str(finetune_epochs)])
     else:
         epochs = finetune_epochs
         experiment_id = '_'.join(['NON_gae',args.stage, args.featureencoding, str(epochs), str(args.final_dropout), "split"+str(args.split_ratio)])
@@ -226,7 +224,7 @@ def main(args):
                 # We disable the graph classification training by setting classification_weight_rt as 0
                 # the trainloader will always be trained in both pretrain stage and fintune stage.
                 
-        if args.train_gae and args.gae_train_method == 'gradual_unfreeze':
+        if args.train_gae and args.gae_train_method == 'dynamic_gradual_unfreeze':
             print('gae based on freeze_n_epoch will be applied')
             # pretrain stage, validation also needs to be trained
             stage_key = {0:"01234",
@@ -239,10 +237,10 @@ def main(args):
                                     2:args.lr/2.,
                                     3:args.lr/2.,
                                     4:args.lr/4.}
-            epochs_finetune =  epoch-args.pretrain_epochs
+            epoch_finetune =  epoch-args.pretrain_epochs
             
-            if epochs_finetune>=0 and (epochs_finetune%25==0):
-                frozen_stage = epochs_finetune//25
+            if epoch_finetune>=0 and (epoch_finetune%25==0):
+                frozen_stage = epoch_finetune//25
                 if 0<=frozen_stage<=4:
                     # unfrozen first
                     model = unfreeze_model_weights(model)
@@ -266,7 +264,81 @@ def main(args):
                 else:
                     raise
                 #gae_weight_rt = 1.0
+                #classification_weight_rt = 0.0
+                #classification_weight_rt =dynamic_fusion(epoch)
+                train(args,
+                      model, 
+                      validloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+                train(args,
+                      model, 
+                      testloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+                
+            # fine tune stage, set gae_weight to 0 to turn it off
+            else:
+                # epoch_finetune is the epoch number during the finetune stage such as 1, 2, 3, ...
+                # finetune_epochs is the total number of epoch used for finetune such as 100.
+                classification_weight_rt =dynamic_fusion(epoch_finetune, finetune_epochs)
+                gae_weight_rt = (1 - classification_weight_rt) / 2.0
+                fingerprint_weight_rt=  (1 - classification_weight_rt) / 2.0
+
+        if args.train_gae and args.gae_train_method == 'gradual_unfreeze':
+            print('gae based on freeze_n_epoch will be applied')
+            # pretrain stage, validation also needs to be trained
+            stage_key = {0:"01234",
+                         1:"0123",
+                         2:"012",
+                         3:"01",
+                         4:"0"}
+            learning_rates_stages = {0:args.lr,
+                                    1:args.lr,
+                                    2:args.lr/2.,
+                                    3:args.lr/2.,
+                                    4:args.lr/4.}
+            epoch_finetune =  epoch-args.pretrain_epochs
+            
+            if epoch_finetune>=0 and (epoch_finetune%25==0):
+                frozen_stage = epoch_finetune//25
+                if 0<=frozen_stage<=4:
+                    # unfrozen first
+                    model = unfreeze_model_weights(model)
+                    # reinitialize the scheduler
+                    model = freeze_model_weights(model, layers=stage_key[frozen_stage])
+                    optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=learning_rates_stages[frozen_stage])
+                    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.5)
+                elif frozen_stage==5:
+                    model = unfreeze_model_weights(model)
+                    optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=args.lr/4.)
+                    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.5)
+            
+              
+            if epoch < args.pretrain_epochs:
+                if args.unsupervised_training_branches == "adjacency_matrix":
+                    gae_weight_rt, fingerprint_weight_rt = 1.0, 0.0
+                elif args.unsupervised_training_branches == "fingerprint":
+                    gae_weight_rt, fingerprint_weight_rt = 0.0, 1.0
+                elif args.unsupervised_training_branches=="adjacency_matrix_fingerprint":
+                    gae_weight_rt, fingerprint_weight_rt = 0.5, 0.5
+                else:
+                    raise
+
                 classification_weight_rt = 0.0
+
                 train(args,
                       model, 
                       validloader, 
@@ -294,12 +366,41 @@ def main(args):
             else:
                 gae_weight_rt = 0.0
                 classification_weight_rt = 1.0
-                fingerprint_weight_rt= 0.0
+                fingerprint_weight_rt= 0.0            
            
+        elif args.train_gae and args.gae_train_method == 'dynamic_fusing':
+
+            classification_weight_rt = dynamic_fusion(epoch,epochs)
+            gae_weight_rt = (1-classification_weight_rt)/2.0
+            fingerprint_weight_rt = (1-classification_weight_rt)/2.0
+
+            train(args,
+                      model, 
+                      validloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+            train(args,
+                      model, 
+                      testloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+                    
         elif args.train_gae and args.gae_train_method == 'static_fusing':
-            gae_weight_rt = args.gae_weight
-            classification_weight_rt = args.classification_weight
-            fingerprint_weight_rt= args.fingerprint_weight
+            gae_weight_rt = 0.25
+            classification_weight_rt = 0.5
+            fingerprint_weight_rt= 0.25
             train(args,
                       model, 
                       validloader, 
@@ -323,10 +424,12 @@ def main(args):
                       classification_weight_rt=0.0,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             
+            
         else:
             gae_weight_rt = 0.0
             classification_weight_rt = 1.0
             fingerprint_weight_rt= 0.0
+        
         train(args, 
               model, 
               trainloader, 
@@ -547,5 +650,4 @@ if __name__ == '__main__':
     print('show all arguments configuration...')
     print(args)
     
-
     main(args)

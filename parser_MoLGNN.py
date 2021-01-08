@@ -77,9 +77,6 @@ class Parser():
             '--finetune_epochs', type=int, default=100,
             help='number of epochs to fine tune the classification network(default: 100)')
         self.parser.add_argument(
-            '--freeze_epochs', type=int, default=50,
-            help='number of epochs to freeze during the fintuning process (default: 50) if we have pretrain_epochs:100, finetune_epochs:100 then the freeze will be from 100 to 150 ')
-        self.parser.add_argument(
             '--lr', type=float, default=0.01,
             help='learning rate (default: 0.01)')
         self.parser.add_argument(
@@ -139,8 +136,8 @@ class Parser():
         self.parser.add_argument(
             '--gae_train_method', 
                                  type=str, 
-                                 default='unfreeze', 
-                                 help='unfreeze, freeze_n_epoch, gradual_unfreeze, static_fusing, dynamic_fusing')
+                                 default='gradual_unfreeze', 
+                                 help='gradual_unfreeze, static_fusing, dynamic_fusing,dynamic_gradual_unfreeze')
         self.parser.add_argument(
             '--unsupervised_training_branches', 
                                  type=str, 
