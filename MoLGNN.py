@@ -309,7 +309,7 @@ def main(args):
                       criterion_fingerprint,
                       epoch,
                       gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=classification_weight_rt,
+                      classification_weight_rt=0.0,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             train(args,
                       model, 
@@ -320,7 +320,7 @@ def main(args):
                       criterion_fingerprint,
                       epoch,
                       gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=classification_weight_rt,
+                      classification_weight_rt=0.0,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             
         else:
