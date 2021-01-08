@@ -1,1212 +1,0 @@
-show all arguments configuration...
-Namespace(batch_size=32, classification_weight=0.5, data_splitting_method='scaffold_split', datapath='/Users/wuyou/MOLGNN_MTL/Jak_/', dataset='BACE', deepchem_datapath='/raid/home/yoyowu/DeepChem/', device=1, disable_cuda=True, experiment_repeat_id='1230_1', featureencoding='onehot', filename='', final_dropout=0.0, finetune_epochs=2, fingerprint_weight=0.5, fold_idx=0, freeze_epochs=1, gae_train_method='static_fusing', gae_weight=0.5, graph_pooling_type='mean', hidden_dim=32, learn_eps=False, lr=0.01, neighbor_pooling_type='mean', num_layers=5, num_mlp_layers=2, pretrain_epochs=1, seed=0, split_ratio=0.8, stage='validation', tflog='/raid/home/yoyowu/MOLGNN/Molgnn/tflogs_1230', train_gae=True, unsupervised_training_branches='fingerprint')
-full dataset is  []
-['atom_type', 'degree', 'formal_charge', 'hybridization_type', 'aromatic', 'chirality_type'] ['atom_type', 'degree', 'formal_charge', 'hybridization_type', 'aromatic', 'chirality_type']
-self.ONEHOTENCODING [0, 1, 2, 3, 5]
-the node feature size if we put all graphs node features together (51577, 6)
-before adding extra dataset, the size of featues is 51577
-node_attributes_filenames, []
-all files 0
-after adding extra dataset, the size of featues is 51577
-atom_type
-[(0.0, 39055), (1.0, 5453), (2.0, 4586), (3.0, 499), (4.0, 1721), (7.0, 218), (8.0, 41), (14.0, 4)]
-degree
-[(1.0, 9963), (2.0, 24990), (3.0, 14903), (4.0, 1721)]
-formal_charge
-[(-1.0, 56), (0.0, 50684), (1.0, 837)]
-hybridization_type
-[(2.0, 222), (3.0, 32134), (4.0, 19221)]
-aromatic
-[(0.0, 29007), (1.0, 22570)]
-chirality_type
-[(0.0, 50775), (1.0, 322), (2.0, 480)]
-generated ONEHOTENCODING_CODEBOOKS
-{'atom_type': [0.0, 1.0, 2.0, 3.0, 4.0, 7.0, 8.0, 14.0], 'degree': [1.0, 2.0, 3.0, 4.0], 'formal_charge': [-1.0, 0.0, 1.0], 'hybridization_type': [2.0, 3.0, 4.0], 'aromatic': [0.0, 1.0], 'chirality_type': [0.0, 1.0, 2.0]}
-Done.
-
-            -------- Data Statistics --------'
-            #Graphs: 1513
-            #Graph Classes: 2
-            #Nodes: 51577
-            #Node Classes: 0
-            #Node Features Dim: 22
-            #Edges: 163113
-            #Edge Classes: 0
-            #Fingerprint dim: 740
-            Avg. of #Nodes: 34.09
-            Avg. of #Edges: 107.81 
- 
-WARNING, the old scaffold_split idx are used, the files names are ['train', 'val', 'test']
-Possible invalid train_idx []
-Possible invalid valid_idx []
-Possible invalid test_idx []
-scaffold_split is used
-length of the labels:  1513
-Number of train sample:  1210
-Number of valid sample:  151
-Number of test sample:  152
-self.linear_or_notFalse
-self.linear_or_notFalse
-self.linear_or_notFalse
-self.linear_or_notFalse
---------------------model--------------------
-batch_norms.0.bias
-torch.Size([32])
-batch_norms.0.num_batches_tracked
-torch.Size([])
-batch_norms.0.running_mean
-torch.Size([32])
-batch_norms.0.running_var
-torch.Size([32])
-batch_norms.0.weight
-torch.Size([32])
-batch_norms.1.bias
-torch.Size([32])
-batch_norms.1.num_batches_tracked
-torch.Size([])
-batch_norms.1.running_mean
-torch.Size([32])
-batch_norms.1.running_var
-torch.Size([32])
-batch_norms.1.weight
-torch.Size([32])
-batch_norms.2.bias
-torch.Size([32])
-batch_norms.2.num_batches_tracked
-torch.Size([])
-batch_norms.2.running_mean
-torch.Size([32])
-batch_norms.2.running_var
-torch.Size([32])
-batch_norms.2.weight
-torch.Size([32])
-batch_norms.3.bias
-torch.Size([32])
-batch_norms.3.num_batches_tracked
-torch.Size([])
-batch_norms.3.running_mean
-torch.Size([32])
-batch_norms.3.running_var
-torch.Size([32])
-batch_norms.3.weight
-torch.Size([32])
-fingerprint_decoder.fc1.bias
-torch.Size([370])
-fingerprint_decoder.fc1.weight
-torch.Size([370, 32])
-fingerprint_decoder.fc2.bias
-torch.Size([740])
-fingerprint_decoder.fc2.weight
-torch.Size([740, 370])
-ginlayers.0.apply_func.bn.bias
-torch.Size([32])
-ginlayers.0.apply_func.bn.num_batches_tracked
-torch.Size([])
-ginlayers.0.apply_func.bn.running_mean
-torch.Size([32])
-ginlayers.0.apply_func.bn.running_var
-torch.Size([32])
-ginlayers.0.apply_func.bn.weight
-torch.Size([32])
-ginlayers.0.apply_func.mlp.batch_norms.0.bias
-torch.Size([32])
-ginlayers.0.apply_func.mlp.batch_norms.0.num_batches_tracked
-torch.Size([])
-ginlayers.0.apply_func.mlp.batch_norms.0.running_mean
-torch.Size([32])
-ginlayers.0.apply_func.mlp.batch_norms.0.running_var
-torch.Size([32])
-ginlayers.0.apply_func.mlp.batch_norms.0.weight
-torch.Size([32])
-ginlayers.0.apply_func.mlp.linears.0.bias
-torch.Size([32])
-ginlayers.0.apply_func.mlp.linears.0.weight
-torch.Size([32, 22])
-ginlayers.0.apply_func.mlp.linears.1.bias
-torch.Size([32])
-ginlayers.0.apply_func.mlp.linears.1.weight
-torch.Size([32, 32])
-ginlayers.0.eps
-torch.Size([1])
-ginlayers.1.apply_func.bn.bias
-torch.Size([32])
-ginlayers.1.apply_func.bn.num_batches_tracked
-torch.Size([])
-ginlayers.1.apply_func.bn.running_mean
-torch.Size([32])
-ginlayers.1.apply_func.bn.running_var
-torch.Size([32])
-ginlayers.1.apply_func.bn.weight
-torch.Size([32])
-ginlayers.1.apply_func.mlp.batch_norms.0.bias
-torch.Size([32])
-ginlayers.1.apply_func.mlp.batch_norms.0.num_batches_tracked
-torch.Size([])
-ginlayers.1.apply_func.mlp.batch_norms.0.running_mean
-torch.Size([32])
-ginlayers.1.apply_func.mlp.batch_norms.0.running_var
-torch.Size([32])
-ginlayers.1.apply_func.mlp.batch_norms.0.weight
-torch.Size([32])
-ginlayers.1.apply_func.mlp.linears.0.bias
-torch.Size([32])
-ginlayers.1.apply_func.mlp.linears.0.weight
-torch.Size([32, 32])
-ginlayers.1.apply_func.mlp.linears.1.bias
-torch.Size([32])
-ginlayers.1.apply_func.mlp.linears.1.weight
-torch.Size([32, 32])
-ginlayers.1.eps
-torch.Size([1])
-ginlayers.2.apply_func.bn.bias
-torch.Size([32])
-ginlayers.2.apply_func.bn.num_batches_tracked
-torch.Size([])
-ginlayers.2.apply_func.bn.running_mean
-torch.Size([32])
-ginlayers.2.apply_func.bn.running_var
-torch.Size([32])
-ginlayers.2.apply_func.bn.weight
-torch.Size([32])
-ginlayers.2.apply_func.mlp.batch_norms.0.bias
-torch.Size([32])
-ginlayers.2.apply_func.mlp.batch_norms.0.num_batches_tracked
-torch.Size([])
-ginlayers.2.apply_func.mlp.batch_norms.0.running_mean
-torch.Size([32])
-ginlayers.2.apply_func.mlp.batch_norms.0.running_var
-torch.Size([32])
-ginlayers.2.apply_func.mlp.batch_norms.0.weight
-torch.Size([32])
-ginlayers.2.apply_func.mlp.linears.0.bias
-torch.Size([32])
-ginlayers.2.apply_func.mlp.linears.0.weight
-torch.Size([32, 32])
-ginlayers.2.apply_func.mlp.linears.1.bias
-torch.Size([32])
-ginlayers.2.apply_func.mlp.linears.1.weight
-torch.Size([32, 32])
-ginlayers.2.eps
-torch.Size([1])
-ginlayers.3.apply_func.bn.bias
-torch.Size([32])
-ginlayers.3.apply_func.bn.num_batches_tracked
-torch.Size([])
-ginlayers.3.apply_func.bn.running_mean
-torch.Size([32])
-ginlayers.3.apply_func.bn.running_var
-torch.Size([32])
-ginlayers.3.apply_func.bn.weight
-torch.Size([32])
-ginlayers.3.apply_func.mlp.batch_norms.0.bias
-torch.Size([32])
-ginlayers.3.apply_func.mlp.batch_norms.0.num_batches_tracked
-torch.Size([])
-ginlayers.3.apply_func.mlp.batch_norms.0.running_mean
-torch.Size([32])
-ginlayers.3.apply_func.mlp.batch_norms.0.running_var
-torch.Size([32])
-ginlayers.3.apply_func.mlp.batch_norms.0.weight
-torch.Size([32])
-ginlayers.3.apply_func.mlp.linears.0.bias
-torch.Size([32])
-ginlayers.3.apply_func.mlp.linears.0.weight
-torch.Size([32, 32])
-ginlayers.3.apply_func.mlp.linears.1.bias
-torch.Size([32])
-ginlayers.3.apply_func.mlp.linears.1.weight
-torch.Size([32, 32])
-ginlayers.3.eps
-torch.Size([1])
-linears_prediction_classification.0.bias
-torch.Size([2])
-linears_prediction_classification.0.weight
-torch.Size([2, 22])
-linears_prediction_classification.1.bias
-torch.Size([2])
-linears_prediction_classification.1.weight
-torch.Size([2, 32])
-linears_prediction_classification.2.bias
-torch.Size([2])
-linears_prediction_classification.2.weight
-torch.Size([2, 32])
-linears_prediction_classification.3.bias
-torch.Size([2])
-linears_prediction_classification.3.weight
-torch.Size([2, 32])
-linears_prediction_classification.4.bias
-torch.Size([2])
-linears_prediction_classification.4.weight
-torch.Size([2, 32])
-linears_prediction_fingerprint.0.bias
-torch.Size([32])
-linears_prediction_fingerprint.0.weight
-torch.Size([32, 22])
-linears_prediction_fingerprint.1.bias
-torch.Size([32])
-linears_prediction_fingerprint.1.weight
-torch.Size([32, 32])
-linears_prediction_fingerprint.2.bias
-torch.Size([32])
-linears_prediction_fingerprint.2.weight
-torch.Size([32, 32])
-linears_prediction_fingerprint.3.bias
-torch.Size([32])
-linears_prediction_fingerprint.3.weight
-torch.Size([32, 32])
-linears_prediction_fingerprint.4.bias
-torch.Size([32])
-linears_prediction_fingerprint.4.weight
-torch.Size([32, 32])
-linears_prediction_gae.0.bias
-torch.Size([64])
-linears_prediction_gae.0.weight
-torch.Size([64, 22])
-linears_prediction_gae.1.bias
-torch.Size([64])
-linears_prediction_gae.1.weight
-torch.Size([64, 32])
-linears_prediction_gae.2.bias
-torch.Size([64])
-linears_prediction_gae.2.weight
-torch.Size([64, 32])
-linears_prediction_gae.3.bias
-torch.Size([64])
-linears_prediction_gae.3.weight
-torch.Size([64, 32])
-linears_prediction_gae.4.bias
-torch.Size([64])
-linears_prediction_gae.4.weight
-torch.Size([64, 32])
-----------------------------------------
-
-
-
-  0% 0/2 [00:00<?, ?epoch/s][A[A[A
-
-
-
-  0% 0/2 [00:00<?, ?epoch/s][A[A[A[A
-
-
-
-
-  0% 0/2 [00:00<?, ?epoch/s][A[A[A[A[A
-
-  0%|          | 0/5 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   0%|          | 0/5 [00:00<?, ?batch/s][A[A
-
-epoch-0:  20%|██        | 1/5 [00:00<00:00,  6.61batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  20%|██        | 1/5 [00:00<00:00,  6.61batch/s][A[A
-
-epoch-0:  40%|████      | 2/5 [00:00<00:00,  5.46batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  40%|████      | 2/5 [00:00<00:00,  5.46batch/s][A[A
-
-epoch-0:  60%|██████    | 3/5 [00:00<00:00,  4.60batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  60%|██████    | 3/5 [00:00<00:00,  4.60batch/s][A[A
-
-epoch-0:  80%|████████  | 4/5 [00:00<00:00,  5.14batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([23, 740]) torch.Size([23, 740])
-
-
-epoch-0:  80%|████████  | 4/5 [00:00<00:00,  5.14batch/s][A[A
-
-epoch-0: 100%|██████████| 5/5 [00:00<00:00,  5.52batch/s][A[Aepoch-0: 100%|██████████| 5/5 [00:00<00:00,  5.01batch/s]
-
-
-  0%|          | 0/5 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   0%|          | 0/5 [00:00<?, ?batch/s][A[A
-
-epoch-0:  20%|██        | 1/5 [00:00<00:00,  6.57batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  20%|██        | 1/5 [00:00<00:00,  6.57batch/s][A[A
-
-epoch-0:  40%|████      | 2/5 [00:00<00:00,  6.33batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  40%|████      | 2/5 [00:00<00:00,  6.33batch/s][A[A
-
-epoch-0:  60%|██████    | 3/5 [00:00<00:00,  6.09batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  60%|██████    | 3/5 [00:00<00:00,  6.09batch/s][A[A
-
-epoch-0:  80%|████████  | 4/5 [00:00<00:00,  6.23batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([24, 740]) torch.Size([24, 740])
-
-
-epoch-0:  80%|████████  | 4/5 [00:00<00:00,  6.23batch/s][A[A
-
-epoch-0: 100%|██████████| 5/5 [00:00<00:00,  6.84batch/s][A[Aepoch-0: 100%|██████████| 5/5 [00:00<00:00,  6.51batch/s]
-
-
-  0%|          | 0/38 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   0%|          | 0/38 [00:00<?, ?batch/s][A[A
-
-epoch-0:   3%|▎         | 1/38 [00:00<00:05,  7.07batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   3%|▎         | 1/38 [00:00<00:05,  7.07batch/s][A[A
-
-epoch-0:   5%|▌         | 2/38 [00:00<00:05,  6.81batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   5%|▌         | 2/38 [00:00<00:05,  6.81batch/s][A[A
-
-epoch-0:   8%|▊         | 3/38 [00:00<00:05,  6.15batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:   8%|▊         | 3/38 [00:00<00:05,  6.15batch/s][A[A
-
-epoch-0:  11%|█         | 4/38 [00:00<00:05,  6.33batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  11%|█         | 4/38 [00:00<00:05,  6.33batch/s][A[A
-
-epoch-0:  13%|█▎        | 5/38 [00:00<00:04,  6.71batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  13%|█▎        | 5/38 [00:00<00:04,  6.71batch/s][A[A
-
-epoch-0:  16%|█▌        | 6/38 [00:00<00:04,  6.88batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  16%|█▌        | 6/38 [00:01<00:04,  6.88batch/s][A[A
-
-epoch-0:  18%|█▊        | 7/38 [00:01<00:04,  7.08batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  18%|█▊        | 7/38 [00:01<00:04,  7.08batch/s][A[A
-
-epoch-0:  21%|██        | 8/38 [00:01<00:04,  7.02batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  21%|██        | 8/38 [00:01<00:04,  7.02batch/s][A[A
-
-epoch-0:  24%|██▎       | 9/38 [00:01<00:03,  7.32batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  24%|██▎       | 9/38 [00:01<00:03,  7.32batch/s][A[A
-
-epoch-0:  26%|██▋       | 10/38 [00:01<00:03,  7.51batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  26%|██▋       | 10/38 [00:01<00:03,  7.51batch/s][A[A
-
-epoch-0:  29%|██▉       | 11/38 [00:01<00:03,  7.40batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  29%|██▉       | 11/38 [00:01<00:03,  7.40batch/s][A[A
-
-epoch-0:  32%|███▏      | 12/38 [00:01<00:03,  7.04batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  32%|███▏      | 12/38 [00:01<00:03,  7.04batch/s][A[A
-
-epoch-0:  34%|███▍      | 13/38 [00:01<00:04,  6.07batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  34%|███▍      | 13/38 [00:02<00:04,  6.07batch/s][A[A
-
-epoch-0:  37%|███▋      | 14/38 [00:02<00:03,  6.71batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  37%|███▋      | 14/38 [00:02<00:03,  6.71batch/s][A[A
-
-epoch-0:  39%|███▉      | 15/38 [00:02<00:03,  7.19batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  39%|███▉      | 15/38 [00:02<00:03,  7.19batch/s][A[A
-
-epoch-0:  42%|████▏     | 16/38 [00:02<00:02,  7.73batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  42%|████▏     | 16/38 [00:02<00:02,  7.73batch/s][A[A
-
-epoch-0:  45%|████▍     | 17/38 [00:02<00:02,  7.60batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  45%|████▍     | 17/38 [00:02<00:02,  7.60batch/s][A[A
-
-epoch-0:  47%|████▋     | 18/38 [00:02<00:02,  7.73batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  47%|████▋     | 18/38 [00:02<00:02,  7.73batch/s][A[A
-
-epoch-0:  50%|█████     | 19/38 [00:02<00:02,  7.87batch/s][A[AUsing backend: pytorch
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-fingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  50%|█████     | 19/38 [00:02<00:02,  7.87batch/s][A[A
-
-epoch-0:  53%|█████▎    | 20/38 [00:02<00:02,  7.87batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  53%|█████▎    | 20/38 [00:02<00:02,  7.87batch/s][A[A
-
-epoch-0:  55%|█████▌    | 21/38 [00:02<00:02,  8.08batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  55%|█████▌    | 21/38 [00:03<00:02,  8.08batch/s][A[A
-
-epoch-0:  58%|█████▊    | 22/38 [00:03<00:01,  8.10batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  58%|█████▊    | 22/38 [00:03<00:01,  8.10batch/s][A[A
-
-epoch-0:  61%|██████    | 23/38 [00:03<00:01,  8.22batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  61%|██████    | 23/38 [00:03<00:01,  8.22batch/s][A[A
-
-epoch-0:  63%|██████▎   | 24/38 [00:03<00:01,  8.27batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  63%|██████▎   | 24/38 [00:03<00:01,  8.27batch/s][A[A
-
-epoch-0:  66%|██████▌   | 25/38 [00:03<00:01,  8.11batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  66%|██████▌   | 25/38 [00:03<00:01,  8.11batch/s][A[A
-
-epoch-0:  68%|██████▊   | 26/38 [00:03<00:01,  6.10batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  68%|██████▊   | 26/38 [00:03<00:01,  6.10batch/s][A[A
-
-epoch-0:  71%|███████   | 27/38 [00:03<00:01,  6.50batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  71%|███████   | 27/38 [00:03<00:01,  6.50batch/s][A[A
-
-epoch-0:  74%|███████▎  | 28/38 [00:03<00:01,  6.89batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  74%|███████▎  | 28/38 [00:04<00:01,  6.89batch/s][A[A
-
-epoch-0:  76%|███████▋  | 29/38 [00:04<00:01,  7.04batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  76%|███████▋  | 29/38 [00:04<00:01,  7.04batch/s][A[A
-
-epoch-0:  79%|███████▉  | 30/38 [00:04<00:01,  7.37batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  79%|███████▉  | 30/38 [00:04<00:01,  7.37batch/s][A[A
-
-epoch-0:  82%|████████▏ | 31/38 [00:04<00:00,  7.51batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  82%|████████▏ | 31/38 [00:04<00:00,  7.51batch/s][A[A
-
-epoch-0:  84%|████████▍ | 32/38 [00:04<00:00,  7.68batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  84%|████████▍ | 32/38 [00:04<00:00,  7.68batch/s][A[A
-
-epoch-0:  87%|████████▋ | 33/38 [00:04<00:00,  6.95batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  87%|████████▋ | 33/38 [00:04<00:00,  6.95batch/s][A[A
-
-epoch-0:  89%|████████▉ | 34/38 [00:04<00:00,  7.14batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  89%|████████▉ | 34/38 [00:04<00:00,  7.14batch/s][A[A
-
-epoch-0:  92%|█████████▏| 35/38 [00:04<00:00,  7.28batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  92%|█████████▏| 35/38 [00:05<00:00,  7.28batch/s][A[A
-
-epoch-0:  95%|█████████▍| 36/38 [00:05<00:00,  6.19batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-0:  95%|█████████▍| 36/38 [00:05<00:00,  6.19batch/s][A[A
-
-epoch-0:  97%|█████████▋| 37/38 [00:05<00:00,  6.42batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([26, 740]) torch.Size([26, 740])
-
-
-epoch-0:  97%|█████████▋| 37/38 [00:05<00:00,  6.42batch/s][A[A
-
-epoch-0: 100%|██████████| 38/38 [00:05<00:00,  7.17batch/s][A[Aepoch-0: 100%|██████████| 38/38 [00:05<00:00,  7.14batch/s]/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.007986188452105877
-
-
-
-train set - average loss: 0.0205, accuracy: 65%:   0% 0/2 [00:08<?, ?epoch/s][A[A[A/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-validation dataset evaluation ...
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.008441377357141861
-test dataset evaluation ...
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.00843617280847148
-
-
-
-
-valid set - average loss: 0.0256, accuracy: 49%:   0% 0/2 [00:09<?, ?epoch/s][A[A[A[A
-
-
-
-
-Learning eps with learn_eps=False: [0.0, 0.0, 0.0, 0.0]:   0% 0/2 [00:09<?, ?epoch/s][A[A[A[A[A
-
-
-train set - average loss: 0.0205, accuracy: 65%:  50% 1/2 [00:09<00:09,  9.17s/epoch][A[A[A
-
-
-
-valid set - average loss: 0.0256, accuracy: 49%:  50% 1/2 [00:09<00:09,  9.17s/epoch][A[A[A[A
-
-
-
-
-Learning eps with learn_eps=False: [0.0, 0.0, 0.0, 0.0]:  50% 1/2 [00:09<00:09,  9.17s/epoch][A[A[A[A[A
-
-  0%|          | 0/5 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   0%|          | 0/5 [00:00<?, ?batch/s][A[A
-
-epoch-1:  20%|██        | 1/5 [00:00<00:00,  4.68batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  20%|██        | 1/5 [00:00<00:00,  4.68batch/s][A[A
-
-epoch-1:  40%|████      | 2/5 [00:00<00:00,  5.06batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  40%|████      | 2/5 [00:00<00:00,  5.06batch/s][A[A
-
-epoch-1:  60%|██████    | 3/5 [00:00<00:00,  5.66batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  60%|██████    | 3/5 [00:00<00:00,  5.66batch/s][A[A
-
-epoch-1:  80%|████████  | 4/5 [00:00<00:00,  5.52batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([23, 740]) torch.Size([23, 740])
-
-
-epoch-1:  80%|████████  | 4/5 [00:00<00:00,  5.52batch/s][A[Aepoch-1: 100%|██████████| 5/5 [00:00<00:00,  6.37batch/s]
-
-
-  0%|          | 0/5 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   0%|          | 0/5 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   0%|          | 0/5 [00:00<?, ?batch/s][A[A
-
-epoch-1:  40%|████      | 2/5 [00:00<00:00, 10.20batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  40%|████      | 2/5 [00:00<00:00, 10.20batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  40%|████      | 2/5 [00:00<00:00, 10.20batch/s][A[A
-
-epoch-1:  80%|████████  | 4/5 [00:00<00:00,  9.98batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([24, 740]) torch.Size([24, 740])
-
-
-epoch-1:  80%|████████  | 4/5 [00:00<00:00,  9.98batch/s][A[Aepoch-1: 100%|██████████| 5/5 [00:00<00:00, 10.14batch/s]
-
-
-  0%|          | 0/38 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   0%|          | 0/38 [00:00<?, ?batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   0%|          | 0/38 [00:00<?, ?batch/s][A[A
-
-epoch-1:   5%|▌         | 2/38 [00:00<00:03, 10.69batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   5%|▌         | 2/38 [00:00<00:03, 10.69batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:   5%|▌         | 2/38 [00:00<00:03, 10.69batch/s][A[A
-
-epoch-1:  11%|█         | 4/38 [00:00<00:03, 10.10batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  11%|█         | 4/38 [00:00<00:03, 10.10batch/s][A[A
-
-epoch-1:  13%|█▎        | 5/38 [00:00<00:03,  9.43batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  13%|█▎        | 5/38 [00:00<00:03,  9.43batch/s][A[A
-
-epoch-1:  16%|█▌        | 6/38 [00:00<00:03,  9.23batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  16%|█▌        | 6/38 [00:00<00:03,  9.23batch/s][A[A
-
-epoch-1:  18%|█▊        | 7/38 [00:00<00:03,  8.86batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  18%|█▊        | 7/38 [00:00<00:03,  8.86batch/s][A[A
-
-epoch-1:  21%|██        | 8/38 [00:00<00:03,  8.96batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  21%|██        | 8/38 [00:01<00:03,  8.96batch/s][A[A
-
-epoch-1:  24%|██▎       | 9/38 [00:01<00:03,  8.33batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  24%|██▎       | 9/38 [00:01<00:03,  8.33batch/s][A[A
-
-epoch-1:  26%|██▋       | 10/38 [00:01<00:03,  8.76batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  26%|██▋       | 10/38 [00:01<00:03,  8.76batch/s][A[A
-
-epoch-1:  29%|██▉       | 11/38 [00:01<00:03,  8.85batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  29%|██▉       | 11/38 [00:01<00:03,  8.85batch/s][A[A
-
-epoch-1:  32%|███▏      | 12/38 [00:01<00:02,  9.04batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  32%|███▏      | 12/38 [00:01<00:02,  9.04batch/s][A[A/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-fingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  32%|███▏      | 12/38 [00:01<00:02,  9.04batch/s][A[A
-
-epoch-1:  37%|███▋      | 14/38 [00:01<00:02,  9.27batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  37%|███▋      | 14/38 [00:01<00:02,  9.27batch/s][A[A
-
-epoch-1:  39%|███▉      | 15/38 [00:01<00:02,  9.45batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  39%|███▉      | 15/38 [00:01<00:02,  9.45batch/s][A[A
-
-epoch-1:  42%|████▏     | 16/38 [00:01<00:02,  9.32batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  42%|████▏     | 16/38 [00:01<00:02,  9.32batch/s][A[A
-
-epoch-1:  45%|████▍     | 17/38 [00:01<00:02,  8.83batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  45%|████▍     | 17/38 [00:01<00:02,  8.83batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  45%|████▍     | 17/38 [00:02<00:02,  8.83batch/s][A[A
-
-epoch-1:  50%|█████     | 19/38 [00:02<00:02,  9.02batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  50%|█████     | 19/38 [00:02<00:02,  9.02batch/s][A[A
-
-epoch-1:  53%|█████▎    | 20/38 [00:02<00:01,  9.14batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  53%|█████▎    | 20/38 [00:02<00:01,  9.14batch/s][A[A
-
-epoch-1:  55%|█████▌    | 21/38 [00:02<00:01,  9.18batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  55%|█████▌    | 21/38 [00:02<00:01,  9.18batch/s][A[A
-
-epoch-1:  58%|█████▊    | 22/38 [00:02<00:01,  9.33batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  58%|█████▊    | 22/38 [00:02<00:01,  9.33batch/s][A[A
-
-epoch-1:  61%|██████    | 23/38 [00:02<00:02,  7.35batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  61%|██████    | 23/38 [00:02<00:02,  7.35batch/s][A[A
-
-epoch-1:  63%|██████▎   | 24/38 [00:02<00:01,  7.43batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  63%|██████▎   | 24/38 [00:02<00:01,  7.43batch/s][A[A
-
-epoch-1:  66%|██████▌   | 25/38 [00:02<00:01,  7.13batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  66%|██████▌   | 25/38 [00:03<00:01,  7.13batch/s][A[A
-
-epoch-1:  68%|██████▊   | 26/38 [00:03<00:01,  7.29batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  68%|██████▊   | 26/38 [00:03<00:01,  7.29batch/s][A[A
-
-epoch-1:  71%|███████   | 27/38 [00:03<00:01,  7.19batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  71%|███████   | 27/38 [00:03<00:01,  7.19batch/s][A[A
-
-epoch-1:  74%|███████▎  | 28/38 [00:03<00:01,  6.92batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  74%|███████▎  | 28/38 [00:03<00:01,  6.92batch/s][A[A
-
-epoch-1:  76%|███████▋  | 29/38 [00:03<00:01,  7.41batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  76%|███████▋  | 29/38 [00:03<00:01,  7.41batch/s][A[A
-
-epoch-1:  79%|███████▉  | 30/38 [00:03<00:01,  7.44batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  79%|███████▉  | 30/38 [00:03<00:01,  7.44batch/s][A[A
-
-epoch-1:  82%|████████▏ | 31/38 [00:03<00:00,  7.57batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  82%|████████▏ | 31/38 [00:03<00:00,  7.57batch/s][A[A
-
-epoch-1:  84%|████████▍ | 32/38 [00:03<00:00,  7.50batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  84%|████████▍ | 32/38 [00:04<00:00,  7.50batch/s][A[A
-
-epoch-1:  87%|████████▋ | 33/38 [00:04<00:00,  6.40batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  87%|████████▋ | 33/38 [00:04<00:00,  6.40batch/s][A[A
-
-epoch-1:  89%|████████▉ | 34/38 [00:04<00:00,  6.87batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  89%|████████▉ | 34/38 [00:04<00:00,  6.87batch/s][A[A
-
-epoch-1:  92%|█████████▏| 35/38 [00:04<00:00,  7.22batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  92%|█████████▏| 35/38 [00:04<00:00,  7.22batch/s][A[A
-
-epoch-1:  95%|█████████▍| 36/38 [00:04<00:00,  7.42batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([32, 740]) torch.Size([32, 740])
-
-
-epoch-1:  95%|█████████▍| 36/38 [00:04<00:00,  7.42batch/s][A[A
-
-epoch-1:  97%|█████████▋| 37/38 [00:04<00:00,  7.78batch/s][A[Afingerprint_gt.shape, fingerprint_rec.shape torch.Size([26, 740]) torch.Size([26, 740])
-
-
-epoch-1:  97%|█████████▋| 37/38 [00:04<00:00,  7.78batch/s][A[A
-
-epoch-1: 100%|██████████| 38/38 [00:04<00:00,  8.18batch/s][A[Aepoch-1: 100%|██████████| 38/38 [00:04<00:00,  8.20batch/s]/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.007577827055592182
-
-
-
-train set - average loss: 0.0205, accuracy: 61%:  50% 1/2 [00:16<00:09,  9.17s/epoch][A[A[Avalidation dataset evaluation ...
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.008020464355582433
-test dataset evaluation ...
-TEST RUNNING LOSS GAE WEIGHTED LAST 0.008079581158725839
-
-
-
-
-valid set - average loss: 0.0208, accuracy: 66%:  50% 1/2 [00:17<00:09,  9.17s/epoch][A[A[A[A
-
-
-
-
-Learning eps with learn_eps=False: [0.0, 0.0, 0.0, 0.0]:  50% 1/2 [00:17<00:09,  9.17s/epoch][A[A[A[A[A
-
-
-train set - average loss: 0.0205, accuracy: 61%: 100% 2/2 [00:17<00:00,  8.78s/epoch][A[A[Atrain set - average loss: 0.0205, accuracy: 61%: 100% 2/2 [00:17<00:00,  8.52s/epoch]
-Learning eps with learn_eps=False: [0.0, 0.0, 0.0, 0.0]:  50% 1/2 [00:17<00:17, 17.05s/epoch]
-valid set - average loss: 0.0208, accuracy: 66%:  50% 1/2 [00:17<00:17, 17.05s/epoch]/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-/raid/home/yoyowu/anaconda3/envs/gnn/lib/python3.7/site-packages/dgl/base.py:25: UserWarning: Currently adjacency_matrix() returns a matrix with destination as rows by default.  In 0.5 the result will have source as rows (i.e. transpose=True)
-  warnings.warn(msg, warn_type)
-
