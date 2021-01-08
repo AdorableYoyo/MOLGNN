@@ -239,10 +239,10 @@ def main(args):
                                     2:args.lr/2.,
                                     3:args.lr/2.,
                                     4:args.lr/4.}
-            epochs_finetune =  epoch-args.pretrain_epochs
+            epoch_finetune =  epoch-args.pretrain_epochs
             
-            if epochs_finetune>=0 and (epochs_finetune%25==0):
-                frozen_stage = epochs_finetune//25
+            if epoch_finetune>=0 and (epoch_finetune%25==0):
+                frozen_stage = epoch_finetune//25
                 if 0<=frozen_stage<=4:
                     # unfrozen first
                     model = unfreeze_model_weights(model)
@@ -262,13 +262,12 @@ def main(args):
                 elif args.unsupervised_training_branches == "fingerprint":
                     gae_weight_rt, fingerprint_weight_rt = 0.0, 1.0
                 elif args.unsupervised_training_branches=="adjacency_matrix_fingerprint":
-                    #gae_weight_rt, fingerprint_weight_rt = 0.5, 0.5
-                    gae_weight_rt, fingerprint_weight_rt =(1-dynamic_fusion(epoch))/2,(1-dynamic_fusion(epoch))/2
+                    gae_weight_rt, fingerprint_weight_rt = 0.5, 0.5
                 else:
                     raise
                 #gae_weight_rt = 1.0
                 #classification_weight_rt = 0.0
-                classification_weight_rt =dynamic_fusion(epoch)
+                #classification_weight_rt =dynamic_fusion(epoch)
                 train(args,
                       model, 
                       validloader, 
@@ -294,9 +293,11 @@ def main(args):
                 
             # fine tune stage, set gae_weight to 0 to turn it off
             else:
-                gae_weight_rt = 0.0
-                classification_weight_rt = 1.0
-                fingerprint_weight_rt= 0.0
+                # epoch_finetune is the epoch number during the finetune stage such as 1, 2, 3, ...
+                # finetune_epochs is the total number of epoch used for finetune such as 100.
+                classification_weight_rt =dynamic_fusion(epoch_finetune, finetune_epochs)
+                gae_weight_rt = (1 - classification_weight_rt) / 2.0
+                fingerprint_weight_rt=  (1 - classification_weight_rt) / 2.0
            
         elif args.train_gae and args.gae_train_method == 'static_fusing':
             gae_weight_rt = (1-dynamic_fusion(epoch))/2
