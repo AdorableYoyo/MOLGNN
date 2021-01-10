@@ -264,7 +264,7 @@ def main(args):
                 else:
                     raise
                 #gae_weight_rt = 1.0
-                #classification_weight_rt = 0.0
+                classification_weight_rt = 0.0
                 #classification_weight_rt =dynamic_fusion(epoch)
                 train(args,
                       model, 
