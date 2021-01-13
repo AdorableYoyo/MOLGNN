@@ -224,7 +224,7 @@ def main(args):
                 # We disable the graph classification training by setting classification_weight_rt as 0
                 # the trainloader will always be trained in both pretrain stage and fintune stage.
                 
-        if args.train_gae and args.gae_train_method == 'dynamic_gradual_unfreeze':
+        if args.train_gae and args.gae_train_method == 'dynamic_fusing':
             print('gae based on freeze_n_epoch will be applied')
             # pretrain stage, validation also needs to be trained
             stage_key = {0:"01234",
@@ -260,10 +260,13 @@ def main(args):
                 elif args.unsupervised_training_branches == "fingerprint":
                     gae_weight_rt, fingerprint_weight_rt = 0.0, 1.0
                 elif args.unsupervised_training_branches=="adjacency_matrix_fingerprint":
-                    gae_weight_rt, fingerprint_weight_rt = 0.5, 0.5
+                    gae_weight_rt = dynamic_fusion(epoch_finetune, pretrain_epochs)
+                    fingerprint_weight_rt = 1 - gae_weight_rt
+
                 else:
                     raise
                 #gae_weight_rt = 1.0
+                
                 classification_weight_rt = 0.0
                 #classification_weight_rt =dynamic_fusion(epoch)
                 train(args,
@@ -290,13 +293,16 @@ def main(args):
                       fingerprint_weight_rt=fingerprint_weight_rt)
                 
             # fine tune stage, set gae_weight to 0 to turn it off
-            else:
+            #else:
                 # epoch_finetune is the epoch number during the finetune stage such as 1, 2, 3, ...
                 # finetune_epochs is the total number of epoch used for finetune such as 100.
-                classification_weight_rt =dynamic_fusion(epoch_finetune, finetune_epochs)
-                gae_weight_rt = (1 - classification_weight_rt) / 2.0
-                fingerprint_weight_rt=  (1 - classification_weight_rt) / 2.0
-
+                #classification_weight_rt =dynamic_fusion(epoch_finetune, finetune_epochs)
+                #gae_weight_rt = (1 - classification_weight_rt) / 2.0
+                #fingerprint_weight_rt=  (1 - classification_weight_rt) / 2.0
+            else:
+                gae_weight_rt = 0.0
+                classification_weight_rt = 1.0
+                fingerprint_weight_rt= 0.0     
         if args.train_gae and args.gae_train_method == 'gradual_unfreeze':
             print('gae based on freeze_n_epoch will be applied')
             # pretrain stage, validation also needs to be trained
@@ -368,61 +374,6 @@ def main(args):
                 classification_weight_rt = 1.0
                 fingerprint_weight_rt= 0.0            
            
-        elif args.train_gae and args.gae_train_method == 'dynamic_fusing':
-
-            classification_weight_rt = dynamic_fusion(epoch,epochs)
-            gae_weight_rt = (1-classification_weight_rt)/2.0
-            fingerprint_weight_rt = (1-classification_weight_rt)/2.0
-
-            train(args,
-                      model, 
-                      validloader, 
-                      optimizer, 
-                      criterion_gae, 
-                      criterion_classification, 
-                      criterion_fingerprint,
-                      epoch,
-                      gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
-                      fingerprint_weight_rt=fingerprint_weight_rt)
-            train(args,
-                      model, 
-                      testloader, 
-                      optimizer, 
-                      criterion_gae, 
-                      criterion_classification, 
-                      criterion_fingerprint,
-                      epoch,
-                      gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
-                      fingerprint_weight_rt=fingerprint_weight_rt)
-                    
-        elif args.train_gae and args.gae_train_method == 'static_fusing':
-            gae_weight_rt = 0.25
-            classification_weight_rt = 0.5
-            fingerprint_weight_rt= 0.25
-            train(args,
-                      model, 
-                      validloader, 
-                      optimizer, 
-                      criterion_gae, 
-                      criterion_classification, 
-                      criterion_fingerprint,
-                      epoch,
-                      gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
-                      fingerprint_weight_rt=fingerprint_weight_rt)
-            train(args,
-                      model, 
-                      testloader, 
-                      optimizer, 
-                      criterion_gae, 
-                      criterion_classification, 
-                      criterion_fingerprint,
-                      epoch,
-                      gae_weight_rt=gae_weight_rt,
-                      classification_weight_rt=0.0,
-                      fingerprint_weight_rt=fingerprint_weight_rt)
             
             
         else:
