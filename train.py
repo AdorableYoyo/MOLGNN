@@ -66,7 +66,7 @@ def train(args,
         #loss_gae = norm*criterion_gae(adj_rec, adj_label, pos_weight=pos_weight)
         #print("score_over_layer_classification.size(), labels.size()", score_over_layer_classification.size(), labels.size())
         loss_classification = criterion_classification(score_over_layer_classification, labels)
-        loss_fingerprint = criterion_fingerprint(fingerprint_rec, fingerprint_gt)/740
+        loss_fingerprint = criterion_fingerprint(fingerprint_rec, fingerprint_gt)/20
         running_loss_gae_original += loss_gae.item()
         running_loss_classification_original += loss_classification.item()
         running_loss_fingerprint_original += loss_fingerprint.item()
