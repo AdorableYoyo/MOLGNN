@@ -324,6 +324,35 @@ def main(args):
                       classification_weight_rt=0.0,
                       fingerprint_weight_rt=fingerprint_weight_rt)
             
+        elif args.train_gae and args.gae_train_method == 'dynamic_fusing':
+
+            classification_weight_rt = dynamic_fusion(epoch,epochs)
+            gae_weight_rt = (1-classification_weight_rt)/2.0
+            fingerprint_weight_rt = (1-classification_weight_rt)/2.0
+
+            train(args,
+                      model, 
+                      validloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+            train(args,
+                      model, 
+                      testloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+
         else:
             gae_weight_rt = 0.0
             classification_weight_rt = 1.0
