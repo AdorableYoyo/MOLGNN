@@ -81,7 +81,7 @@ def main(args):
     finetune_epochs = args.finetune_epochs
     current_time = datetime.now().strftime('%b%d_%H-%M-%S')
     if args.train_gae:
-        if args.gae_train_method == 'static_fusing':
+        if args.gae_train_method == 'static_fusing' or args.gae_train_method == 'dynamic_fusing':
             epochs = finetune_epochs 
         else:
             epochs = pretrain_epochs + finetune_epochs
