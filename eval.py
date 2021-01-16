@@ -4,6 +4,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import average_precision_score
 from parser_MoLGNN import Parser
 import torch
+import torch.nn as nn
 from jakdt import _MultipleLabelDatasets
 
 
@@ -141,17 +142,24 @@ def eval_net(
     # print("labels all first 10", labels_all[:10])
     # print("preds all first 10", preds_all[:10])
     if len(labels_all.shape) > 1:
+        print("label shape:", labels_all.shape)
+        print("prediction shape:", preds_all.shape)
         roc_list = []
         roc_list_micro = []
         for i in range(labels_all.shape[1]):
-            roc_score = roc_auc_score(
-                labels_all[label_mask, i], preds_all[label_mask, i]
-            )
-            roc_score_micro = roc_auc_score(
-                labels_all[label_mask, i], preds_all[label_mask, i], average="micro"
-            )
-            roc_list.append(roc_score)
-            roc_list_micro.append(roc_score_micro)
+            try:
+                roc_score = roc_auc_score(
+                    labels_all[label_mask[:, i], i], preds_all[label_mask[:, i], i]
+                )
+                roc_score_micro = roc_auc_score(
+                    labels_all[label_mask[:, i], i],
+                    preds_all[label_mask[:, i], i],
+                    average="micro",
+                )
+                roc_list.append(roc_score)
+                roc_list_micro.append(roc_score_micro)
+            except ValueError:
+                continue
         roc_score = sum(roc_list) / len(roc_list)
         roc_score_micro = sum(roc_list_micro) / len(roc_list_micro)
     else:
@@ -164,10 +172,12 @@ def eval_net(
         ap_list_micro = []
         for i in range(labels_all.shape[1]):
             ap_score = average_precision_score(
-                labels_all[label_mask, i], preds_all[label_mask, i]
+                labels_all[label_mask[:, i], i], preds_all[label_mask[:, i], i]
             )
             ap_score_micro = average_precision_score(
-                labels_all[label_mask, i], preds_all[label_mask, i], average="micro"
+                labels_all[label_mask[:, i], i],
+                preds_all[label_mask[:, i], i],
+                average="micro",
             )
             ap_list.append(ap_score)
             ap_list_micro.append(ap_score_micro)
