@@ -105,7 +105,7 @@ def train(
             loss_classification = criterion_classification(
                 score_over_layer_classification, labels
             )
-        loss_fingerprint = criterion_fingerprint(fingerprint_rec, fingerprint_gt) / 740
+        loss_fingerprint = criterion_fingerprint(fingerprint_rec, fingerprint_gt) 
 
         running_loss_gae_original += loss_gae.item()
         running_loss_classification_original += loss_classification.item()
