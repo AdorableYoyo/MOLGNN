@@ -1,5 +1,5 @@
 data_splitting_method='scaffold_split'
-experiment_repeat_id=0112_0
+experiment_repeat_id=0115_5
 stage=validation
 split_ratio=0.8
 #datapath=/raid/home/jimmyshen/JAK_/original/
@@ -8,16 +8,16 @@ split_ratio=0.8
 
 datapath=/Users/wuyou/MOLGNN_MTL/Jak_/
 deepchem_datapath=/raid/home/yoyowu/new_DeepChem/
-tflog=/raid/home/yoyowu/MOLGNN/logs
+tflog=/raid/home/yoyowu/MOLGNN/logs_1
 
-device=1
+device=2
 
-gae_train_method=dynamic_fusing
+gae_train_method=static_fusing
 pretrain_epochs=100
-finetune_epochs=100
+finetune_epochs=200
 
 
-for dataset in BACE BBBP 
+for dataset in BACE BBBP ClinTox_twoLabel Sider
 
 do
 
@@ -40,7 +40,7 @@ python MoLGNN.py  \
 --datapath ${datapath}  \
 --deepchem_datapath ${deepchem_datapath} \
 --tflog  ${tflog}  \
---device ${device}  > ./outlogs0112/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
+--device ${device}  > ./outlogs0115/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
 echo "done ${dataset} ${split_ratio}"
 done
 done

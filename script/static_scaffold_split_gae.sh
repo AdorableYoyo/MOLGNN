@@ -1,5 +1,5 @@
 data_splitting_method='scaffold_split'
-experiment_repeat_id=0114_2
+experiment_repeat_id=0115_1
 stage=validation
 split_ratio=0.8
 #datapath=/raid/home/jimmyshen/JAK_/original/
@@ -12,12 +12,15 @@ tflog=/raid/home/yoyowu/MOLGNN/logs
 
 device=1
 
-gae_train_method=static_fusing
+for gae_train_method in static_fusing dynamic_fusing 
+#gae_train_method=static_fusing
+do
+
 pretrain_epochs=100
-finetune_epochs=300
+finetune_epochs=200
 
 
-for dataset in BACE BBBP 
+for dataset in ClinTox_twoLabel
 
 do
 
@@ -42,5 +45,6 @@ python MoLGNN.py  \
 --tflog  ${tflog}  \
 --device ${device}  > ./outlogs0112/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
 echo "done ${dataset} ${split_ratio}"
+done
 done
 done

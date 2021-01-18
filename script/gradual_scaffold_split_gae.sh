@@ -1,31 +1,33 @@
 data_splitting_method='scaffold_split'
-experiment_repeat_id=0108_1
+experiment_repeat_id=0115_HIV
 stage=validation
 split_ratio=0.8
-datapath=/raid/home/jimmyshen/JAK_/original/
-deepchem_datapath=/Users/wuyou/DeepChem/
-tflog=/Users/wuyou/tflogs
+#datapath=/raid/home/jimmyshen/JAK_/original/
+#deepchem_datapath=/Users/wuyou/DeepChem/
+#tflog=/Users/wuyou/tflogs
 
-#datapath=/Users/wuyou/MOLGNN_MTL/Jak_/
-#deepchem_datapath=/raid/home/yoyowu/new_DeepChem/
-#tflog=/raid/home/yoyowu/MOLGNN/logs
+datapath=/Users/wuyou/MOLGNN_MTL/Jak_/
+deepchem_datapath=/raid/home/yoyowu/new_DeepChem/
+tflog=/raid/home/yoyowu/MOLGNN/logs_1
 
-device=1
+device=2
 
-gae_train_method=dynamic_fusing
-pretrain_epochs=1
-finetune_epochs=1
+#for gae_train_method in static_fusing dynamic_fusing 
+gae_train_method=gradual_unfreeze
 
 
-for dataset in  BACE 
+pretrain_epochs=100
+finetune_epochs=100
 
+
+#for dataset in ClinTox_twoLabel Sider
+for dataset in HIV
 do
 
 for unsupervised_training_branches in adjacency_matrix_fingerprint
 do
 nohup time 
 python MoLGNN.py  \
---disable_cuda \
 --dataset ${dataset}  \
 --stage ${stage} \
 --data_splitting_method ${data_splitting_method} \
@@ -41,7 +43,8 @@ python MoLGNN.py  \
 --datapath ${datapath}  \
 --deepchem_datapath ${deepchem_datapath} \
 --tflog  ${tflog}  \
---device ${device}  > ./templogs/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
+--device ${device}  > ./outlogs0115/${dataset}FP_${experiment_repeat_id}_epochs${epochs}_${data_splitting_method}_${split_ratio}_${gae_train_method}_${unsupervised_training_branches}_output.log 2>&1 &
 echo "done ${dataset} ${split_ratio}"
 done
 done
+
