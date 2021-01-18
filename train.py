@@ -75,6 +75,7 @@ def train(
         )
         # norm*loss_function(adj_logits, adj_label, pos_weight=pos_weight)
         # this is loss vgae
+
         loss_gae = variational_loss_function(
             preds=adj_rec,
             labels=adj_label,
@@ -105,6 +106,7 @@ def train(
                 score_over_layer_classification, labels
             )
         loss_fingerprint = criterion_fingerprint(fingerprint_rec, fingerprint_gt) / 740
+
         running_loss_gae_original += loss_gae.item()
         running_loss_classification_original += loss_classification.item()
         running_loss_fingerprint_original += loss_fingerprint.item()

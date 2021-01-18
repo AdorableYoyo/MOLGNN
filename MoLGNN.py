@@ -89,8 +89,11 @@ def main(args):
     finetune_epochs = args.finetune_epochs
     current_time = datetime.now().strftime("%b%d_%H-%M-%S")
     if args.train_gae:
-        if args.gae_train_method == "static_fusing":
-            epochs = finetune_epochs
+
+
+        if args.gae_train_method == 'static_fusing' or args.gae_train_method == 'dynamic_fusing':
+            epochs = finetune_epochs 
+
         else:
             epochs = pretrain_epochs + finetune_epochs
         experiment_id = "_".join(
@@ -350,33 +353,60 @@ def main(args):
         elif args.train_gae and args.gae_train_method == "static_fusing":
             gae_weight_rt = 0.25
             classification_weight_rt = 0.5
-            fingerprint_weight_rt = 0.25
-            train(
-                args,
-                model,
-                validloader,
-                optimizer,
-                criterion_gae,
-                criterion_classification,
-                criterion_fingerprint,
-                epoch,
-                gae_weight_rt=gae_weight_rt,
-                classification_weight_rt=0.0,
-                fingerprint_weight_rt=fingerprint_weight_rt,
-            )
-            train(
-                args,
-                model,
-                testloader,
-                optimizer,
-                criterion_gae,
-                criterion_classification,
-                criterion_fingerprint,
-                epoch,
-                gae_weight_rt=gae_weight_rt,
-                classification_weight_rt=0.0,
-                fingerprint_weight_rt=fingerprint_weight_rt,
-            )
+
+            fingerprint_weight_rt= 0.25
+            train(args,
+                      model, 
+                      validloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+            train(args,
+                      model, 
+                      testloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+            
+        elif args.train_gae and args.gae_train_method == 'dynamic_fusing':
+
+            classification_weight_rt = dynamic_fusion(epoch,epochs)
+            gae_weight_rt = (1-classification_weight_rt)/2.0
+            fingerprint_weight_rt = (1-classification_weight_rt)/2.0
+
+            train(args,
+                      model, 
+                      validloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+            train(args,
+                      model, 
+                      testloader, 
+                      optimizer, 
+                      criterion_gae, 
+                      criterion_classification, 
+                      criterion_fingerprint,
+                      epoch,
+                      gae_weight_rt=gae_weight_rt,
+                      classification_weight_rt=0.0,
+                      fingerprint_weight_rt=fingerprint_weight_rt)
+
 
         else:
             gae_weight_rt = 0.0
