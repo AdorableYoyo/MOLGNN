@@ -127,6 +127,12 @@ def train(
         # backprop
         optimizer.zero_grad()
         loss.backward()
+        # Could you please try a small value such as 0.00001 first to debug. 
+        # If 0.00001 can get rid of the nan problem. It means the gradient is too large somehow.
+        # 0.00001 is too small and we can set it back to 3.0 to see whether we will get the problem again. 
+        # If not, we can use 3.0 as our final value.
+        clip_val = 0.00001
+        torch.nn.utils.clip_grad_norm(model.parameters(), clip_val)
         optimizer.step()
 
         # report
