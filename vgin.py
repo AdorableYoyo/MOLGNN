@@ -352,13 +352,16 @@ class GIN_VGAE(nn.Module):
             this_layer_gae= self.linears_prediction_gae[i](h)
             this_layer_classification= self.linears_prediction_classification[i](pooled_h)
             this_layer_fingerprint= self.linears_prediction_fingerprint[i](pooled_h)
+            print(f"this_layer_classification, {this_layer_classification.size()}")
+            print(f"this_layer_classification, {this_layer_classification}")
             if self.debug:
                 print(f"this_layer, {this_layer_gae.size()}")
                 print(f"this_layer, {this_layer_gae}")
             score_over_layer_gae += this_layer_gae
             score_over_layer_classification += this_layer_classification
             score_over_layer_fingerprint += this_layer_fingerprint
-            
+            print(f"score_over_layer_classification, {score_over_layer_classification.size()}")
+            print(f"score_over_layer_classification, {score_over_layer_classification}")
             if self.debug:
                 print(f"score_over_layer {score_over_layer_gae.size()}")
                 print(f"score_over_layer {score_over_layer_gae}")
