@@ -43,7 +43,7 @@ def train(
     bar = tqdm(range(total_iters), unit="batch", position=2, file=sys.stdout)
 
     for pos, (graphs, labels, fingerprints) in zip(bar, trainloader):
-        # batch graphs will be shipped to device in forward part of model
+        # batch graphs will be shipped to device in forward part of 
         if args.dataset in _MultipleLabelDatasets:
             labels = labels.double()
         labels = labels.to(args.device)
@@ -132,7 +132,7 @@ def train(
         # 0.00001 is too small and we can set it back to 3.0 to see whether we will get the problem again. 
         # If not, we can use 3.0 as our final value.
         clip_val = 0.00001
-        torch.nn.utils.clip_grad_norm(model.parameters(), clip_val)
+        torch.nn.utils.clip_grad_norm(net.parameters(), clip_val)
         optimizer.step()
 
         # report
